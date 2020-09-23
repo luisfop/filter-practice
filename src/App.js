@@ -1,11 +1,28 @@
-import React from 'react';
+import React,{useState} from 'react';
+import { users } from './userMock';
+import Filter from './components/filter';
 
 import './App.css';
 
 function App() {
+
+  const [value , setValue] = useState('');
+
+  const usersMock = users;
+
+  const filterHandler = (e) => {
+    setValue(e);
+    console.log('Value -> ' , value)
+  }
+  
   return (
     <div className="App">
-        <h1>Filter app</h1>
+        <Filter users={usersMock} filter={filterHandler}/>
+        {usersMock.map((user) => (
+          <p className="users">{user.name}</p>
+        ))}
+
+        
     </div>
   );
 }
